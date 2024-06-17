@@ -20,17 +20,36 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation("org.springframework.boot:spring-boot-starter-validation:3.3.0")
+
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.apache.poi:poi-ooxml:5.2.5")
 	implementation("org.apache.poi:poi:5.2.5")
+
 	implementation("org.hibernate.orm:hibernate-core:6.4.0.Final")
+//	implementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
+//	implementation("jakarta.validation:jakarta.validation-api:3.1.0")
+//	implementation("org.glassfish.expressly:expressly:5.0.0")
+//	implementation("org.hibernate.validator:hibernate-validator-annotation-processor:8.0.1.Final")
+
+
+	implementation("org.mapstruct:mapstruct:1.5.5.Final")
+	implementation("org.hibernate.orm:hibernate-hikaricp:6.4.0.Final")
+
 	implementation("com.zaxxer:HikariCP:5.1.0")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+	implementation("org.jetbrains.kotlin:kotlin-stdlib")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
 
 	// swagger
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0")
+	implementation("io.swagger.core.v3:swagger-annotations:2.2.22")
+
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
