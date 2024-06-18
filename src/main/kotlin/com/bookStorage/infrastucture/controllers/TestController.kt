@@ -21,73 +21,29 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("")
-class TestController(val genreRepo: IGenreRepo, val genreService: IGenreService, val bookRepo: IBookRepo) {
+class TestController(val bookRepo: IBookRepo) {
 
     @PostMapping("/create")
-    fun createGenre(@RequestBody genreModel: GenreModel): ResponseEntity<Boolean>{
-
-//        genreModel.id = UUID.randomUUID()
-        val result: Boolean = genreRepo.CreateGenre(genreModel)
-
-        return ResponseEntity.ok(result)
+    fun createTest(@RequestBody bookModel: BookModel): Boolean{
+        bookModel.id=UUID(0L, 0L)
+        return  bookRepo.CreateBookModel(bookModel)
     }
 
+    @PutMapping("/update")
+    fun updateTest(@RequestBody bookModel: BookModel):Boolean{
 
+        val result = bookRepo.UpdateBookModel(bookModel)
+
+        return result
+    }
+
+    @GetMapping("/get")
+    fun getTest(): List<BookModel>{
+        return bookRepo.GetAllBooksByPage(1,20)
+    }
 
     @GetMapping("/{id}")
-    fun getGenre(@PathVariable("id") id: UUID): ResponseEntity<GenreModel>{
-
-        return ResponseEntity.ok(genreRepo.GetGenreById(id))
-    }
-
-    @GetMapping
-    fun getGenres(): ResponseEntity<List<GenreModel>>{
-        return ResponseEntity.ok(genreRepo.GetAllGenres())
-    }
-
-    @DeleteMapping("/{id}")
-    fun deleteGenre(id: UUID): ResponseEntity<Boolean>{
-        return ResponseEntity.ok(genreRepo.DeleteGenresById(id))
-    }
-
-    @PutMapping()
-    fun updateGenre(@RequestBody genreModel: GenreModel): ResponseEntity<Boolean>{
-        return ResponseEntity.ok(genreRepo.UpdateGenre(genreModel))
-    }
-
-    @PostMapping("/createDto")
-    suspend  fun createFromDto(@RequestBody genreModelDto: GenreModelDto): Boolean =
-        coroutineScope {
-            println("coroutine executes in thread named: ${Thread.currentThread().name}")
-            val tst = async {
-                delay(4000)
-                println("coroutine executes after delay in thread named: ${Thread.currentThread().name}")
-                genreService.CreateGenre(genreModelDto)
-            }
-            tst.await()
-        }
-
-
-
-
-    @PostMapping("/testShit")
-    suspend fun createTest(@Valid @RequestBody bookModel: BookModel): Boolean = coroutineScope {
-
-        val model: BookModel = BookModel()
-
-        val validationFactory: ValidatorFactory = Validation.buildDefaultValidatorFactory()
-
-        val validator: Validator = validationFactory.validator
-
-
-        val v: MutableSet<ConstraintViolation<BookModel>> = validator.validate(bookModel)
-
-        println(bookModel.isbn)
-        println(bookModel.leftovers)
-        println(v.size)
-
-        false
-    }
+    fun getByIdTest(@PathVariable id: UUID): BookModel = bookRepo.GetBookById(id)
 
 
     @PostMapping("/testShitt")

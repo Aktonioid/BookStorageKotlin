@@ -25,10 +25,10 @@ class BookModel(
     @Column
     var price: Int = -1,
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     var genres: MutableSet<GenreModel> = mutableSetOf(),
 
-    @Column
+    @field:Column(unique = true)
     @field:Pattern(regexp = "\\d-\\d\\d\\d\\d-\\d\\d\\d\\d-\\d")
     var isbn: String = "",
 
