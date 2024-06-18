@@ -10,8 +10,8 @@ interface IBookRepo {
     fun DeleteBookModel(id: UUID): Boolean
     fun GetAllBooksByPage(bookPage: Int, pageSize: Int): List<BookModel>
     fun GetBookById(id: UUID): BookModel
-    fun GetBooksByAuthorSearch(name: String)
-    fun GetBooksByAuthorByPage(name: String, page: Int, pageSize: Int)
-    fun GetBooksByGenre(genre: GenreModel): List<BookModel>
-    fun GetBookByName(name: String): List<BookModel>
+    fun GetBooksByAuthorSearch(name: String): List<BookModel>
+    fun GetBooksByAuthorByPage(name: String, page: Int, pageSize: Int): List<BookModel>
+    fun GetBooksByGenre(genre: GenreModel, pageSize: Int, page: Int): List<BookModel>
+    fun GetBookByName(name: String, pageSize: Int, page: Int): List<BookModel>
 }
