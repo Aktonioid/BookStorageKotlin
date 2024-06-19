@@ -16,7 +16,7 @@ class CellModel(
     //Книга, которая лежит в этой ячейке
     // в книгах надо прописать в остатках, что максимум может быть штук 900
     @JoinColumn(name = "book_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
 //    @Column(name="book_id")
     var bookId: BookModel = BookModel()
 ) {

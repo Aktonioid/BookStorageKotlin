@@ -25,3 +25,7 @@ replay_pid*
 
 *.properties
 
+/build
+/.gradle
+/.idea
+

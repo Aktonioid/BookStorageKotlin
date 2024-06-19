@@ -5,6 +5,7 @@ import com.bookStorage.core.dto.GenreModelDto
 import com.bookStorage.core.models.BookModel
 import com.bookStorage.core.models.GenreModel
 import com.bookStorage.core.repositories.IBookRepo
+import com.bookStorage.core.repositories.ICellRepo
 import com.bookStorage.core.repositories.IGenreRepo
 import com.bookStorage.core.services.IGenreService
 import jakarta.validation.ConstraintViolation
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("")
-class TestController(val bookRepo: IBookRepo) {
+class TestController(val bookRepo: IBookRepo, val cellRepo: ICellRepo) {
 
     @PostMapping("/create")
     fun createTest(@RequestBody bookModel: BookModel): Boolean{
@@ -44,6 +45,12 @@ class TestController(val bookRepo: IBookRepo) {
 
     @GetMapping("/{id}")
     fun getByIdTest(@PathVariable id: UUID): BookModel = bookRepo.GetBookById(id)
+
+    @GetMapping("cell/{id}")
+    fun CheckIfCellIsEmpty(id: Int): Boolean{
+
+        return cellRepo.CheckIfEmptyCells(id)
+    }
 
 
     @PostMapping("/testShitt")

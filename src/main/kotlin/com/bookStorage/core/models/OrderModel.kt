@@ -12,7 +12,7 @@ class OrderModel(
     @Id
     var id:UUID = UUID(0,0),
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     var books: MutableSet<OrderPartModel> = mutableSetOf(),
 
