@@ -12,7 +12,7 @@ class SupplyModel(
     @Id // не GeneratedValue, так как генериться они будут при создании модели
     var id: UUID = UUID(0,0),
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "supply_id")
     var books: MutableSet<SupplyPartModel> = mutableSetOf(),//поставляемые книги
 
